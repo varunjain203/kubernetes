@@ -10,5 +10,9 @@ echo "[TASK 3] Deploy Calico network"
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/tigera-operator.yaml >/dev/null
 kubectl --kubeconfig=/etc/kubernetes/admin.conf create -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.0/manifests/custom-resources.yaml >/dev/null
 
-echo "[TASK 4] Generate and save cluster join command to /joincluster.sh"
+echo "[TASK 4] Copying admin.conf to .kube/config"
+mkdir -p $HOME/.kube
+cp -p /etc/kubernetes/admin.conf $HOME/.kube/config
+
+echo "[TASK 5] Generate and save cluster join command to /joincluster.sh"
 kubeadm token create --print-join-command > /joincluster.sh
