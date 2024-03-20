@@ -7,4 +7,3 @@ sshpass -p "kubeadmin" scp -o UserKnownHostsFile=/dev/null -o StrictHostKeyCheck
 bash /joincluster.sh >/dev/null
 ip=$(ip a | grep 172 | awk '{print $2}' | cut -d / -f1)
 echo 'KUBELET_EXTRA_ARGS="--node-ip='$ip'"' >> /etc/default/kubelet
-bash /joincluster.sh >/dev/null 2>&1
